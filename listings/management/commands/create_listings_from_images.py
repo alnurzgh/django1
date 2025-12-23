@@ -13,7 +13,11 @@ from django.core.management.base import BaseCommand
 from django.core.files import File
 from django.contrib.auth.models import User
 from django.conf import settings
-from listings.models import Listing, Amenity, ListingAmenity
+from listings.models import Listing
+# Временно отключено
+# from listings.models import Listing, Amenity, ListingAmenity
+# Amenity = None
+# ListingAmenity = None
 from decimal import Decimal
 from django.utils import timezone
 
@@ -56,8 +60,8 @@ class Command(BaseCommand):
             user.set_password('testpass123')
             user.save()
 
-        # Получаем или создаем удобства
-        amenities_map = self._get_or_create_amenities()
+        # Получаем или создаем удобства (временно отключено)
+        # amenities_map = self._get_or_create_amenities()
 
         # Описания для разных типов объектов
         descriptions = {
@@ -318,14 +322,14 @@ class Command(BaseCommand):
             with open(target_file, 'rb') as f:
                 listing.photo_main.save(source_image.name, File(f), save=True)
 
-            # Добавляем удобства (случайный набор)
-            amenity_names = ['Wi-Fi', 'Парковка', 'Кухня', 'Кондиционер']
-            for amenity_name in amenity_names:
-                if amenity_name in amenities_map:
-                    ListingAmenity.objects.get_or_create(
-                        listing=listing,
-                        amenity=amenities_map[amenity_name]
-                    )
+            # Добавляем удобства (временно отключено)
+            # amenity_names = ['Wi-Fi', 'Парковка', 'Кухня', 'Кондиционер']
+            # for amenity_name in amenity_names:
+            #     if amenity_name in amenities_map:
+            #         ListingAmenity.objects.get_or_create(
+            #             listing=listing,
+            #             amenity=amenities_map[amenity_name]
+            #         )
 
             self.stdout.write(self.style.SUCCESS(f'[+] Создано объявление: {title} (ID: {listing.id})'))
             self.stdout.write(f'    Фото: {source_image.name}')
@@ -337,23 +341,24 @@ class Command(BaseCommand):
             self.stdout.write(self.style.WARNING(f'Пропущено (уже существуют): {skipped_count}'))
         self.stdout.write('='*50)
 
-    def _get_or_create_amenities(self):
-        """Получает или создает удобства"""
-        amenities_data = [
-            {'name': 'Wi-Fi', 'icon': 'wifi'},
-            {'name': 'Парковка', 'icon': 'car'},
-            {'name': 'Кондиционер', 'icon': 'snowflake'},
-            {'name': 'Кухня', 'icon': 'utensils'},
-            {'name': 'Стиральная машина', 'icon': 'washing-machine'},
-            {'name': 'Телевизор', 'icon': 'tv'},
-        ]
-
-        amenities_map = {}
-        for amenity_data in amenities_data:
-            amenity, _ = Amenity.objects.get_or_create(
-                name=amenity_data['name'],
-                defaults={'icon': amenity_data['icon']}
-            )
-            amenities_map[amenity_data['name']] = amenity
-
-        return amenities_map
+    # Временно отключено
+    # def _get_or_create_amenities(self):
+    #     """Получает или создает удобства"""
+    #     amenities_data = [
+    #         {'name': 'Wi-Fi', 'icon': 'wifi'},
+    #         {'name': 'Парковка', 'icon': 'car'},
+    #         {'name': 'Кондиционер', 'icon': 'snowflake'},
+    #         {'name': 'Кухня', 'icon': 'utensils'},
+    #         {'name': 'Стиральная машина', 'icon': 'washing-machine'},
+    #         {'name': 'Телевизор', 'icon': 'tv'},
+    #     ]
+    # 
+    #     amenities_map = {}
+    #     for amenity_data in amenities_data:
+    #         amenity, _ = Amenity.objects.get_or_create(
+    #             name=amenity_data['name'],
+    #             defaults={'icon': amenity_data['icon']}
+    #         )
+    #         amenities_map[amenity_data['name']] = amenity
+    # 
+    #     return amenities_map

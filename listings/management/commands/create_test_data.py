@@ -8,7 +8,9 @@ Management команда для создания тестовых данных
 """
 from django.core.management.base import BaseCommand
 from django.contrib.auth.models import User
-from listings.models import Listing, Amenity, ListingAmenity
+from listings.models import Listing
+# Временно отключено
+# from listings.models import Listing, Amenity, ListingAmenity
 from decimal import Decimal
 
 
@@ -64,27 +66,11 @@ class Command(BaseCommand):
         else:
             self.stdout.write(self.style.WARNING(f'⚠ Пользователь {username} уже существует'))
 
-        # 2. Создаем удобства
-        amenities_data = [
-            {'name': 'Wi-Fi', 'icon': 'wifi'},
-            {'name': 'Парковка', 'icon': 'car'},
-            {'name': 'Кондиционер', 'icon': 'snowflake'},
-            {'name': 'Кухня', 'icon': 'utensils'},
-            {'name': 'Стиральная машина', 'icon': 'washing-machine'},
-            {'name': 'Телевизор', 'icon': 'tv'},
-            {'name': 'Бассейн', 'icon': 'swimming-pool'},
-            {'name': 'Балкон', 'icon': 'home'},
-        ]
-
+        # 2. Создаем удобства (временно отключено)
         created_amenities = []
-        for amenity_data in amenities_data:
-            amenity, created = Amenity.objects.get_or_create(
-                name=amenity_data['name'],
-                defaults={'icon': amenity_data['icon']}
-            )
-            created_amenities.append(amenity)
-            if created:
-                self.stdout.write(self.style.SUCCESS(f'✓ Создано удобство: {amenity.name}'))
+        # amenities_data = [...]
+        # for amenity_data in amenities_data:
+        #     amenity, created = Amenity.objects.get_or_create(...)
 
         # 3. Создаем объект жилья
         listing_data = {
@@ -152,21 +138,9 @@ class Command(BaseCommand):
                 self.stdout.write(self.style.SUCCESS(f'✓ Создан объект: {listing.title}'))
                 self.stdout.write(self.style.WARNING('   ⚠ Фото не добавлено. Добавьте фото через админку или API.'))
 
-        # 4. Добавляем удобства к объекту
-        amenities_to_add = ['Wi-Fi', 'Парковка', 'Кондиционер', 'Кухня', 'Стиральная машина', 'Телевизор']
-        added_count = 0
-        for amenity_name in amenities_to_add:
-            amenity = next((a for a in created_amenities if a.name == amenity_name), None)
-            if amenity:
-                listing_amenity, created = ListingAmenity.objects.get_or_create(
-                    listing=listing,
-                    amenity=amenity
-                )
-                if created:
-                    added_count += 1
-
-        if added_count > 0:
-            self.stdout.write(self.style.SUCCESS(f'✓ Добавлено {added_count} удобств к объекту'))
+        # 4. Добавляем удобства к объекту (временно отключено)
+        # amenities_to_add = ['Wi-Fi', 'Парковка', 'Кондиционер', 'Кухня', 'Стиральная машина', 'Телевизор']
+        # ...
 
         # Итоговая информация
         self.stdout.write('\n' + '='*50)

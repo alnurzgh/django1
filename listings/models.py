@@ -3,6 +3,7 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from decimal import Decimal
+from datetime import timedelta
 
 class Listing(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='listings', verbose_name="Владелец", null=True, blank=True)
@@ -55,6 +56,33 @@ class Listing(models.Model):
 
     def __str__(self):
         return self.title
+    
+    def get_price_for_date(self, check_date):
+        """Получает цену за конкретную дату (учитывает выходные)"""
+        weekday = check_date.weekday()
+        if weekday >= 5 and self.weekend_price:
+            return self.weekend_price
+        return self.base_price
+    
+    def calculate_total_price(self, check_in, check_out):
+        """Рассчитывает общую стоимость бронирования"""
+        total = Decimal('0.00')
+        current_date = check_in
+        nights = 0
+        
+        while current_date < check_out:
+            total += self.get_price_for_date(current_date)
+            current_date += timedelta(days=1)
+            nights += 1
+        
+        if nights >= 30 and self.monthly_discount:
+            discount = total * Decimal(str(self.monthly_discount)) / 100
+            total -= discount
+        elif nights >= 7 and self.weekly_discount:
+            discount = total * Decimal(str(self.weekly_discount)) / 100
+            total -= discount
+        
+        return total
 
     class Meta:
         verbose_name = "Объявление"

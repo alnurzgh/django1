@@ -7,8 +7,9 @@ Management команда для синхронизации всех актив�
     python manage.py sync_ical --listing-id 1  # Синхронизировать конкретный объект
 """
 from django.core.management.base import BaseCommand
-from listings.models import ICalSync
-from listings.services import ICalSyncService
+# Временно отключено - модель не определена
+# from listings.models import ICalSync
+# from listings.services import ICalSyncService
 
 
 class Command(BaseCommand):
@@ -27,10 +28,13 @@ class Command(BaseCommand):
         )
 
     def handle(self, *args, **options):
-        listing_id = options.get('listing_id')
-        ical_id = options.get('ical_id')
-
-        if ical_id:
+        self.stdout.write(self.style.ERROR('Команда временно отключена - модель ICalSync не определена'))
+        return
+        # Временно отключено
+        # listing_id = options.get('listing_id')
+        # ical_id = options.get('ical_id')
+        # 
+        # if ical_id:
             # Синхронизируем конкретную iCal синхронизацию
             try:
                 ical_sync = ICalSync.objects.get(id=ical_id, is_active=True)
