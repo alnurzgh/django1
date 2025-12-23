@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<a href="{% url 'listings' %}" class="btn btn-light mb-4">Назад к каталогу</a>
+
+<div class="row">
+    <div class="col-md-8">
+        {% if listing.photo_main %}
+            <img src="{{ listing.photo_main.url }}" alt="{{ listing.title }}" class="img-fluid mb-3">
+        {% else %}
+            <div class="bg-secondary d-flex align-items-center justify-content-center mb-3" style="height: 400px;">
+                <span class="text-white">Нет фото</span>
+            </div>
+        {% endif %}
+        <h2>{{ listing.title }}</h2>
+        <p class="lead"><i class="fas fa-map-marker-alt"></i> {{ listing.city }}, {{ listing.address }}</p>
+        <hr>
+        <p>{{ listing.description }}</p>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="text-success text-center">{{ listing.base_price }} ₸</h3>
+                <ul class="list-group list-group-flush mt-3">
+                    <li class="list-group-item">Спален: {{ listing.bedrooms }}</li>
+                    <li class="list-group-item">Площадь: {{ listing.sqft }} м²</li>
+                    <li class="list-group-item">Дата: {{ listing.list_date|date:"d M Y" }}</li>
+                </ul>
+                <button class="btn btn-success w-100 mt-3">Связаться с риелтором</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

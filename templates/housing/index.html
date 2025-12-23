@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="jumbotron text-center mt-5">
+    <h1 class="display-4">Добро пожаловать в My Rental!</h1>
+    <p class="lead">Лучшее место для поиска аренды жилья.</p>
+    <hr class="my-4">
+    <p>Ищите квартиру своей мечты или сдавайте недвижимость с нами.</p>
+    <a class="btn btn-primary btn-lg" href="{% url 'listings' %}" role="button">Смотреть объявления</a>
+</div>
+{% endblock %}
