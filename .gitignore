@@ -72,7 +72,13 @@ htmlcov/
 *_backup.py
 *.pyc
 *_backup_check.txt
+admin_backup.py
+admin_simple.py
+models_backup_check.txt
 
 # Temporary files
 *.tmp
 *.temp
+
+# PythonAnywhere
+.pythonanywhere

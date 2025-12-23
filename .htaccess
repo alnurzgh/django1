@@ -1,0 +1,10 @@
+# Для Apache (если используется)
+# На PythonAnywhere обычно не требуется, но может пригодиться
+
+# Redirect all requests to Django
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+    RewriteRule ^(.*)$ /yourusername.pythonanywhere.com/$1 [L]
+</IfModule>
+
