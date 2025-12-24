@@ -1,0 +1,45 @@
+БЫСТРОЕ ИСПРАВЛЕНИЕ ПРОБЛЕМ НА PYTHONANYWHERE
+============================================
+
+1. Подключитесь к Bash консоли на PythonAnywhere
+
+2. Выполните диагностику:
+   cd ~/django1
+   python manage.py diagnose_db
+
+3. Проверьте объявления через shell:
+   python manage.py shell
+   
+   В shell выполните:
+   from listings.models import Listing
+   print(f"Всего: {Listing.objects.count()}")
+   print(f"Опубликованных: {Listing.objects.filter(is_published=True).count()}")
+   
+   # Если есть неопубликованные, опубликуйте их:
+   Listing.objects.filter(is_published=False).update(is_published=True)
+   
+   exit()
+
+4. Улучшенная админка:
+   - Обновите файл listings/admin.py на сервере
+   - Перезагрузите веб-приложение в Web tab
+
+5. Если объявления действительно пропали:
+   python manage.py create_test_data
+   # Или
+   python manage.py create_listings_from_images
+
+6. Проверьте настройки в Web tab:
+   - Static files: /static/ → /home/ваш_username/django1/staticfiles
+   - Static files: /media/ → /home/ваш_username/django1/media
+
+7. Если админка без CSS:
+   python manage.py collectstatic --noinput
+   python manage.py check_static
+   # Затем настройте Static files mapping в Web tab и перезагрузите
+
+8. Перезагрузите веб-приложение в Web tab (кнопка Reload)
+
+Подробные инструкции в файле FIX_PYTHONANYWHERE.md
+Инструкция по исправлению CSS админки: FIX_ADMIN_CSS.md
+

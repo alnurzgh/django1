@@ -1,0 +1,39 @@
+{
+  "listing": {
+    "model": "listings.listing",
+    "pk": 1,
+    "fields": {
+      "owner": 1,
+      "title": "Business-class",
+      "description": "Двухкомнатная квартира с видом на город — это апартаменты в городе Алматы. Выставочный и конференц-центр «Атакент-Экспо» и Спортивно-развлекательный комплекс Дельфин располагаются в 2,4 км и 2 км соответственно. Установлен кондиционер. Из окон апартаментов открывается вид на город и горы. Предоставляется бесплатный Wi-Fi.\r\n\r\nВ этих апартаментах имеется спальня (1), кухня с холодильником, гостиная зона, а также ванная комната (1) с душем. В распоряжении гостей телевизор с плоским экраном.",
+      "address": "баукино 228",
+      "city": "Алматы",
+      "latitude": "10.000000",
+      "longitude": "10.000000",
+      "property_type": "apartment",
+      "bedrooms": 1,
+      "beds": 1,
+      "bathrooms": "1.0",
+      "sqft": 70,
+      "max_guests": 4,
+      "base_price": "30000.00",
+      "weekend_price": null,
+      "weekly_discount": 0,
+      "monthly_discount": 0,
+      "photo_main": "photos/2025/12/21/image_0.jpg",
+      "is_verified": true,
+      "is_published": true,
+      "verification_date": "2025-12-21T08:08:41Z",
+      "moderation_status": "approved",
+      "moderation_notes": "отлично",
+      "booking_type": "request",
+      "house_rules": "Прибытие: c 14:00\r\n\r\nВыезд: до 12:00\r\n\r\nНельзя с животными\r\n\r\nКурение запрещено\r\n\r\nБез вечеринок и мероприятий\r\n\r\nМожно с детьми",
+      "check_in_time": "14:00:00",
+      "check_out_time": "12:00:00",
+      "min_nights": 1,
+      "max_nights": 30,
+      "list_date": "2025-12-21T08:08:41Z",
+      "updated_at": "2025-12-21T09:15:56.086Z"
+    }
+  }
+}

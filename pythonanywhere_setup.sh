@@ -26,3 +26,4 @@ echo "2. Установить DEBUG = False для production"
 echo "3. Настроить WSGI файл на PythonAnywhere"
 echo "4. Настроить Static files в разделе Web"
 
+

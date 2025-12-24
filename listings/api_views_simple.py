@@ -131,3 +131,4 @@ class ListingViewSet(viewsets.ModelViewSet):
         serializer_response = ListingListSerializer(listings, many=True, context={'request': request})
         return Response(serializer_response.data)
 
+

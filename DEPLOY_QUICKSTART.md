@@ -7,16 +7,16 @@
 Через Git:
 ```bash
 cd ~
-git clone https://github.com/yourusername/my_rental_project.git
-cd my_rental_project
+git clone https://github.com/yourusername/django1.git
+cd django1
 ```
 
-Или загрузите через веб-интерфейс в папку `~/my_rental_project`
+Или загрузите через веб-интерфейс в папку `~/django1`
 
 ### 2. Настройте виртуальное окружение
 
 ```bash
-cd ~/my_rental_project
+cd ~/django1
 python3.10 -m venv venv
 source venv/bin/activate
 pip install --user -r requirements.txt
@@ -40,7 +40,7 @@ python manage.py collectstatic --noinput
 import os
 import sys
 
-path = '/home/YOURUSERNAME/my_rental_project'
+path = '/home/YOURUSERNAME/django1'
 if path not in sys.path:
     sys.path.insert(0, path)
 
@@ -53,8 +53,8 @@ application = get_wsgi_application()
 **Замените YOURUSERNAME на ваш username!**
 
 3. **Static files:**
-   - URL: `/static/` → Directory: `/home/YOURUSERNAME/my_rental_project/staticfiles`
-   - URL: `/media/` → Directory: `/home/YOURUSERNAME/my_rental_project/media`
+   - URL: `/static/` → Directory: `/home/YOURUSERNAME/django1/staticfiles`
+   - URL: `/media/` → Directory: `/home/YOURUSERNAME/django1/media`
 
 4. **Нажмите Reload**
 
@@ -69,4 +69,5 @@ DEBUG = False  # Для production
 ```
 
 Готово! Откройте `https://YOURUSERNAME.pythonanywhere.com`
+
 

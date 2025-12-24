@@ -26,20 +26,20 @@
 
 ```bash
 cd ~
-git clone https://github.com/yourusername/my_rental_project.git
-cd my_rental_project
+git clone https://github.com/yourusername/django1.git
+cd django1
 ```
 
 **Или загрузите файлы вручную:**
 
 1. Перейдите в "Files"
-2. Создайте папку `my_rental_project` в домашней директории
+2. Создайте папку `django1` в домашней директории
 3. Загрузите все файлы проекта через веб-интерфейс
 
 ### 4. Создайте виртуальное окружение
 
 ```bash
-cd ~/my_rental_project
+cd ~/django1
 python3.10 -m venv venv
 source venv/bin/activate
 ```
@@ -80,7 +80,7 @@ python manage.py collectstatic --noinput
 import os
 import sys
 
-path = '/home/yourusername/my_rental_project'
+path = '/home/yourusername/django1'
 if path not in sys.path:
     sys.path.insert(0, path)
 
@@ -97,10 +97,10 @@ application = get_wsgi_application()
 В разделе Web найдите секцию "Static files":
 
 1. **URL:** `/static/`
-   **Directory:** `/home/yourusername/my_rental_project/staticfiles`
+   **Directory:** `/home/yourusername/django1/staticfiles`
 
 2. **URL:** `/media/`
-   **Directory:** `/home/yourusername/my_rental_project/media`
+   **Directory:** `/home/yourusername/django1/media`
 
 ### 11. Обновите settings.py
 
@@ -141,8 +141,8 @@ mkdir -p media/photos
 2. Добавьте задачу (например, ежедневная синхронизация в 3:00):
 
 ```bash
-source /home/yourusername/my_rental_project/venv/bin/activate
-cd /home/yourusername/my_rental_project
+source /home/yourusername/django1/venv/bin/activate
+cd /home/yourusername/django1
 python manage.py sync_ical
 ```
 
@@ -221,4 +221,5 @@ tail -f /var/log/yourusername.pythonanywhere.com.error.log
 4. Примените миграции: `python manage.py migrate`
 5. Соберите статические файлы: `python manage.py collectstatic --noinput`
 6. Перезагрузите Web App
+
 

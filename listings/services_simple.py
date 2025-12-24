@@ -55,3 +55,4 @@ class AvailabilityService:
         
         return list(queryset)
 
+
